@@ -8,6 +8,9 @@
     generated file, and it should be manually updated when a new driver is added.
 
 *******************************************************************************/
+@source:misc/gsp.cpp
+gsp
+
 
 @source:access/acvirus.cpp
 virusa

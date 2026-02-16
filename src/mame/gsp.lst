@@ -1,0 +1,9 @@
+// gsp 
+//
+// make SUBTARGET=gsp to build the gsp in mame
+// add files to the lst file to add aditional sources to the gsp build
+
+@source:misc/gsp.cpp
+gsp
+
+

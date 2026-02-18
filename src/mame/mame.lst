@@ -37627,6 +37627,9 @@ so30h
 so4saw2
 zito4dps
 
+@source:pc/pcipc_via.cpp
+ls5amvp3
+
 @source:pc/play4texash.cpp
 play4texash
 
@@ -37645,6 +37648,9 @@ i8550061
 i8555081
 i8580071
 i8580111
+
+@source:pc/pulltrig.cpp
+pulltrig
 
 @source:pc/quakeat.cpp
 ga6la7
@@ -37667,6 +37673,9 @@ gamecst2
 gamecstl
 shutms11
 zidav630e
+
+@source:pc/sshuffle.cpp
+sshuffle
 
 @source:pc/tandy1t.cpp
 t1000
@@ -43818,6 +43827,9 @@ azkoyent8
 design6
 designe
 
+@source:skeleton/dharma_z180.cpp
+lbingo
+
 @source:skeleton/diablo1300.cpp
 diablo
 
@@ -44016,8 +44028,8 @@ poemzet2
 i7000
 
 @source:skeleton/iam2.cpp
-zhonggmj
 szjl
+zhonggmj
 
 @source:skeleton/icatel.cpp
 icatel
@@ -44293,9 +44305,6 @@ pt68k4
 
 @source:skeleton/ptcsol.cpp
 sol20
-
-@source:skeleton/pullttrigger.cpp
-pullttrig
 
 @source:skeleton/pv9234.cpp
 pv9234

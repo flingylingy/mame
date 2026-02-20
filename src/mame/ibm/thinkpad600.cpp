@@ -169,7 +169,6 @@ Hardware for the 770Z model.
 #include "cpu/i386/i386.h"
 #include "machine/ds17x85.h"
 #include "machine/pci.h"
-#include "machine/pci-ide.h"
 #include "machine/i82443bx_host.h"
 #include "machine/i82371eb_isa.h"
 #include "machine/i82371eb_ide.h"
@@ -282,7 +281,7 @@ void thinkpad600_state::thinkpad600e(machine_config &config)
 
 	I82371EB_USB (config, "pci:07.2", 0);
 	I82371EB_ACPI(config, "pci:07.3", 0);
-	ACPI_PIIX4   (config, "pci:07.3:acpi", 0);
+	ACPI_PIIX4   (config, "pci:07.3:acpi");
 	SMBUS        (config, "pci:07.3:smbus", 0);
 
 //  TODO: modem at "pci:10.0"

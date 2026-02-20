@@ -31,7 +31,7 @@ private:
 
 	void gsp_map(address_map &map) ATTR_COLD;
 
-	required_device<tms34010_device> m_maincpu;
+	required_device<tms34020_device> m_maincpu;
 };
 
 
@@ -48,10 +48,16 @@ void gsp_state::machine_reset()
 {
 }
 
+const int VRAM_SIZE = 0x800000;
+const int VRAM1_START = 0x80000000;
+const int VRAM1_END = VRAM1_START + VRAM_SIZE - 1;
+const int VRAM2_START = 0x90000000;
+const int VRAM2_END = VRAM2_START + VRAM_SIZE - 1;
 
 void gsp_state::gsp_map(address_map &map)
 {
-	map(0x08000000, 0x080bffff).ram();
+	map(VRAM1_START, VRAM1_END).ram().share("vram1");
+	map(VRAM2_START, VRAM2_END).ram().share("vram2");
 }
 
 
@@ -62,7 +68,7 @@ INPUT_PORTS_END
 void gsp_state::gsp(machine_config &config)
 {
 	/* basic machine hardware */
-	TMS34010(config, m_maincpu, 40_MHz_XTAL);
+	TMS34020(config, m_maincpu, 40_MHz_XTAL);
 	m_maincpu->set_addrmap(AS_PROGRAM, &gsp_state::gsp_map);
 	m_maincpu->set_halt_on_reset(false);
 	m_maincpu->set_pixel_clock(22.1184_MHz_XTAL / 22);
@@ -73,12 +79,12 @@ void gsp_state::gsp(machine_config &config)
 	screen.set_raw(22.1184_MHz_XTAL / 2, 444, 0, 320, 233, 0, 200);
 	screen.set_screen_update("maincpu", FUNC(tms34010_device::tms340x0_rgb32));
 
+
 }
 
 
 ROM_START( gsp )
 	ROM_REGION16_LE( 0x400000, "user1", 0 ) /* 34020 code */
-
 ROM_END
 
 

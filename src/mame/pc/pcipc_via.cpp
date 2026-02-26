@@ -4,7 +4,19 @@
  * Sandbox for VIA based PCs
  *
  * Using Lucky Star 5AMVP3 given we already have a mostly compatible Super I/O (ITE 8661F)
- * Eventually needs to be backported to misc/startouch.cpp
+ *
+ * Notes:
+ * - need to map_first the IDE for make it recognize both that and floppy disks;
+ * - win98se: none of the via4in1 drivers seems to actually work with this BIOS. It will return
+ *   "registry error, please reboot", with CD-ROM drive becoming non-functional afterwards.
+ *   winme acts mostly the same, except that it manages to install with v4.17
+ *
+ * TODO:
+ * - win98se/win98me: resource conflict between ACPI BIOS and AGP card(s), PCI cards works fine.
+ *   Bridge memory/io bases not passed properly?
+ * - win98se: PS/2 keyboard becomes unresponsive after a while;
+ * - win98se: ACPI has issues on power off and reboot (workaround: use restart in MSDOS mode);
+ * - freedos13: APMDOS hangs system with JEMMEX preloaded, works when issued standalone;
  *
  */
 
@@ -40,7 +52,7 @@ public:
 		, m_maincpu(*this, "maincpu")
 	{ }
 
-	void mvp3(machine_config &config);
+	void mvp3(machine_config &config) ATTR_COLD;
 
 protected:
 	// TODO: this binding should be more basic
@@ -53,6 +65,7 @@ private:
 	static void ite_superio_config(device_t *device);
 };
 
+// NOTE: something between these two will corrupt the Energy Star logo if mapped low
 void mvp3_state::main_map(address_map &map)
 {
 	map.unmap_value_high();
@@ -98,6 +111,7 @@ void mvp3_state::mvp3(machine_config &config)
 	m_maincpu->set_addrmap(AS_PROGRAM, &mvp3_state::main_map);
 	m_maincpu->set_addrmap(AS_IO, &mvp3_state::main_io);
 	m_maincpu->set_irq_acknowledge_callback("pci:07.0:pic0", FUNC(pic8259_device::inta_cb));
+	m_maincpu->smiact().set("pci:00.0", FUNC(vt82c598mvp_host_device::smi_act_w));
 
 	// TODO: config space not known
 	PCI_ROOT(config, "pci", 0);
@@ -113,7 +127,7 @@ void mvp3_state::mvp3(machine_config &config)
 		if (state)
 			machine().schedule_soft_reset();
 	});
-//  isa.smi().set_inputline("maincpu", INPUT_LINE_SMI);
+	//isa.smi().set_inputline("maincpu", INPUT_LINE_SMI);
 
 	vt82c586b_ide_device &ide(VT82C586B_IDE(config, "pci:07.1", 0, m_maincpu));
 	// TODO: use ad-hoc remapping from ISA
@@ -122,11 +136,13 @@ void mvp3_state::mvp3(machine_config &config)
 
 	VT82C586B_USB (config, "pci:07.2", 0);
 	VT82C586B_ACPI(config, "pci:07.3", 0);
-	ACPI_PIPC     (config, "pci:07.3:acpi");
+	acpi_pipc_device &acpi_dev(ACPI_PIPC     (config, "pci:07.3:acpi"));
+	acpi_dev.smi().set_inputline("maincpu", INPUT_LINE_SMI);
+//	acpi_dev.sci().set("pci:07.0", FUNC(vt82c586b_isa_device::pc_irq12m_w));
 
-	PCI_SLOT(config, "pci:01.0:1", agp_cards, 1, 0, 1, 2, 3, "sis6326_agp");
+	PCI_SLOT(config, "pci:01.0:0", agp_cards, 0, 0, 1, 2, 3, nullptr);
 
-	PCI_SLOT(config, "pci:1", pci_cards, 13, 0, 1, 2, 3, nullptr);
+	PCI_SLOT(config, "pci:1", pci_cards, 13, 0, 1, 2, 3, "sis6326_pci");
 	PCI_SLOT(config, "pci:2", pci_cards, 14, 1, 2, 3, 0, nullptr);
 	PCI_SLOT(config, "pci:3", pci_cards, 15, 2, 3, 0, 1, nullptr);
 	PCI_SLOT(config, "pci:4", pci_cards, 16, 3, 0, 1, 2, nullptr);
@@ -167,5 +183,5 @@ ROM_END
 
 } // anonymous namespace
 
-COMP(1998, ls5amvp3,    0,     0, mvp3,   0, mvp3_state, empty_init, "Lucky Star", "5AMVP3 (VIA MVP3 chipset)", MACHINE_NOT_WORKING | MACHINE_NO_SOUND )
 
+COMP(1998, ls5amvp3,    0,     0, mvp3,   0, mvp3_state, empty_init, "Lucky Star", "5AMVP3 (VIA MVP3 chipset)", MACHINE_NOT_WORKING | MACHINE_NO_SOUND )

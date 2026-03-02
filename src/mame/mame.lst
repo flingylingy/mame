@@ -15199,10 +15199,11 @@ sc6dndema
 sc6dndemb
 sc6dndemc
 
-@source:bfm/bfm_swp.cpp
+@source:bfm/bfm_cobra3.cpp
 c3_ppays
 c3_rtime
 c3_telly
+c3_tellyns
 c3_totp
 
 @source:bfm/bfmsys83.cpp
@@ -15788,6 +15789,7 @@ dimahoou
 dimahoud
 dstlk
 dstlka
+dstlkb
 dstlkh
 dstlku
 dstlku1d
@@ -16641,6 +16643,7 @@ quarterbc
 redlin2p
 strkzone
 teamqb
+teamqb1
 teamqb2
 upyoural
 viper
@@ -17274,6 +17277,7 @@ dreambal
 
 @source:dataeast/exprraid.cpp
 exprraid
+exprraidbl
 exprraidi
 exprraidu
 wexpress
@@ -24597,6 +24601,7 @@ yutnori
 cyvern
 cyvernj
 galpani4
+galpani4a
 galpani4j
 galpani4k
 galpanidx
@@ -30202,7 +30207,7 @@ tripjack
 tripjack07
 tripjack11
 
-@source:misc/chameleonrx1.cpp
+@source:misc/chamrx1.cpp
 chamrx1
 
 @source:misc/chance32.cpp

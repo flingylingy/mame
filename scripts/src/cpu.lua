@@ -283,8 +283,8 @@ if CPUS["ADSP2106X"] then
 end
 
 if opt_tool(CPUS, "ADSP2106X") then
-	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/sharc/sharcdsm.cpp")
-	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/sharc/sharcdsm.h")
+	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/sharc/sharc_dasm.cpp")
+	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/sharc/sharc_dasm.h")
 end
 
 --------------------------------------------------
@@ -943,6 +943,8 @@ if CPUS["SH"] then
 		MAME_DIR .. "src/devices/cpu/sh/sh7604_wdt.h",
 		MAME_DIR .. "src/devices/cpu/sh/sh7604.cpp",
 		MAME_DIR .. "src/devices/cpu/sh/sh7604.h",
+		MAME_DIR .. "src/devices/cpu/sh/sh7709s.h",
+		MAME_DIR .. "src/devices/cpu/sh/sh7709s.cpp",
 	}
 end
 
@@ -1046,17 +1048,18 @@ if CPUS["E1"] then
 	files {
 		MAME_DIR .. "src/devices/cpu/e132xs/e132xs.cpp",
 		MAME_DIR .. "src/devices/cpu/e132xs/e132xs.h",
-		MAME_DIR .. "src/devices/cpu/e132xs/32xsdefs.h",
-		MAME_DIR .. "src/devices/cpu/e132xs/e132xsop.hxx",
-		MAME_DIR .. "src/devices/cpu/e132xs/e132xsfe.cpp",
 		MAME_DIR .. "src/devices/cpu/e132xs/e132xsdrc.cpp",
 		MAME_DIR .. "src/devices/cpu/e132xs/e132xsdrc_ops.hxx",
+		MAME_DIR .. "src/devices/cpu/e132xs/e132xsop.hxx",
+		MAME_DIR .. "src/devices/cpu/e132xs/e1defs.h",
+		MAME_DIR .. "src/devices/cpu/e132xs/e1fe.cpp",
+		MAME_DIR .. "src/devices/cpu/e132xs/e1fe.h",
 	}
 end
 
 if opt_tool(CPUS, "E1") then
-	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/e132xs/32xsdasm.cpp")
-	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/e132xs/32xsdasm.h")
+	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/e132xs/e1dasm.cpp")
+	table.insert(disasm_files , MAME_DIR .. "src/devices/cpu/e132xs/e1dasm.h")
 end
 
 --------------------------------------------------
@@ -3015,6 +3018,8 @@ if CPUS["TLCS900"] then
 		MAME_DIR .. "src/devices/cpu/tlcs900/900htbl.hxx",
 		MAME_DIR .. "src/devices/cpu/tlcs900/tmp94c241.cpp",
 		MAME_DIR .. "src/devices/cpu/tlcs900/tmp94c241.h",
+		MAME_DIR .. "src/devices/cpu/tlcs900/tmp94c241_serial.cpp",
+		MAME_DIR .. "src/devices/cpu/tlcs900/tmp94c241_serial.h",
 		MAME_DIR .. "src/devices/cpu/tlcs900/tmp95c061.cpp",
 		MAME_DIR .. "src/devices/cpu/tlcs900/tmp95c061.h",
 		MAME_DIR .. "src/devices/cpu/tlcs900/tmp95c063.cpp",

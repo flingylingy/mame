@@ -7,7 +7,7 @@
 #define LOG_MAP         (1U << 1)
 
 #define VERBOSE (LOG_GENERAL)
-//#define LOG_OUTPUT_FUNC osd_printf_warning
+//#define LOG_OUTPUT_FUNC osd_printf_info
 
 #define LOGMAP(...)    LOGMASKED(LOG_MAP,  __VA_ARGS__)
 
@@ -514,7 +514,8 @@ void vt82c598mvp_bridge_device::device_reset()
 	pci_bridge_device::device_reset();
 
 	command = 0x0007;
-	command_mask = 0x0047;
+	// has SERR# enable (bit 8), has parity error response (bit 6)
+	command_mask = 0x0147;
 	// Medium DEVSEL#, 66 MHz Capable
 	status = 0x0220;
 

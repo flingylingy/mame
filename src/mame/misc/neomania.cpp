@@ -17,7 +17,19 @@ TODO:
 - Extract "Guard.zip" and understand what is for;
 \- WARNING: once in non-Safe Mode Windows (after drivers installation etc.) the OS has a Startup
    item for the frontend (neofend.exe). If protection fails it will proceed to *wipe out* the
-   entire HDD, it is advised to backup the .dif before fiddling with that.
+   entire HDD and any non-write protected floppy, it is advised to backup the .dif before fiddling
+   with that.
+\- PPM puts following files in memory, with header "NeomaniaUniversalMonitorVer5":
+   - C:\Neomania\Pkunzip.exe;Guard.zip;Pkzip.exe
+   - C:\windows\win.ini;user.dat
+   - <A scrambled pattern in between>, xor with 0xff gives back the same
+     'C:\Neomania\Driver/Ppm.exe' (...)
+   - C:\Neomania\Neofend.dat (as a key result for the protection?)
+- For making neoemu.exe to work, requires following things:
+\- wss (emulator) to be connected (workaround by connecting on ISA bus);
+\- m_data in PC LPT to be 0xff (NOTE: Windows will drive it low again after ppm.exe);
+\- a tight loop hang patch at game startup (neofend.exe dependency?);
+\- at least a Pentium II (so ga6vx);
 
 ===================================================================================================
 
@@ -26,9 +38,9 @@ Neo Mania:
  and updated it on 2003 increasing the number of games up to 48. There was a latest newer version
  where they added "Strikers 1945" and "Prehistoric Isle 2", reaching 50 games.
  There are Spanish and Portuguese localizations.
- The hardware is a PC with Windows 98 (exact hardware not specified) and a Neo·Geo emulator, with a
- small PCB for converting VGA + Parallel port (inputs) + sound (with volume knob) to JAMMA (named
- "NEO MANIA ADAPTER BOARD").
+ The hardware is a PC with Windows 98 (exact hardware not specified) and a DOS MAME running
+ Neo·Geo games, with a small PCB for converting VGA + Parallel port (inputs) + sound (with volume
+ knob) to JAMMA (named "NEO MANIA ADAPTER BOARD").
 The "NEO MANIA ADAPTER BOARD" contains:
    3 x Blocks of jumpers to enable or disable features:
     JMP1 (two positions) - With or without Coin Dist.
@@ -43,6 +55,12 @@ C:\Windows has driver installs for:
 - a Sound Blaster AudioPCI 128
 - an ATI All-In-Wonder / All-In-Wonder Pro (with leftover "SYSTEM.I~I" footprint with
   "display.drv=ATI Rage IIC AGP (Português)").
+Root C: actually has a detlog.txt hidden file, containing the actual detected MB configuration:
+- VIA VT82C691 "Apollo Pro" (upgraded MVP3)
+- VIA VT82C596 PIPC (upgraded 'C586B)
+- ATI Rage IIC AGP, subvendor "Rage 3D Pro AGP 2x XPERT 98"
+- Creative Labs CT2518, subvendor "Audio PCI 64V/128/5200 / Creative CT4810/CT5803/CT5806 [Sound Blaster PCI]"
+Makes Soyo SY-6VZA the most likely target for this.
 
 **************************************************************************************************/
 

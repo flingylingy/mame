@@ -16331,6 +16331,7 @@ supduck
 bballs
 bballsa
 f1dream
+f1dreama
 f1dreamb
 f1dreamba
 pushman
@@ -16339,6 +16340,7 @@ pushmans
 pushmant
 tigeroad
 tigeroadb
+tigeroadba
 tigeroadu
 toramich
 
@@ -20709,8 +20711,6 @@ dunhuang
 @source:igs/goldstar.cpp
 3cdpoker
 3cdpokera
-aladdin
-aladdina
 alienatt
 amaztsk
 animalhs
@@ -20759,8 +20759,6 @@ cm1codara
 cm1codarb
 cm1spa
 cmast91
-cmast92
-cmast92a
 cmast97
 cmast97a
 cmast97b
@@ -20819,13 +20817,8 @@ cutyline
 cutylinea
 cutylineb
 cutylinec
-eldoradd
-eldoraddo
 eldoraddoa
 eldoraddoab
-eldoraddob
-eldoraddoc
-eldoraddod
 f16s8l
 fb2010
 fb2010a
@@ -26149,7 +26142,7 @@ abc806
 @source:luxor/abc1600.cpp
 abc1600
 
-@source:luxor/ds90.cpp
+@source:luxor/x37.cpp
 x37
 
 @source:makerbot/replicator.cpp
@@ -37716,6 +37709,7 @@ so4saw2
 zito4dps
 
 @source:pc/pcipc_via.cpp
+ct6vta2
 ga6vx
 ls5amvp3
 zidabx98
@@ -43986,6 +43980,17 @@ supereld
 
 @source:skeleton/dyna_d0703.cpp
 dynasty
+
+@source:skeleton/dyna_dc4000.cpp
+aladdin
+aladdina
+cmast92
+cmast92a
+eldoradd
+eldoraddo
+eldoraddob
+eldoraddoc
+eldoraddod
 
 @source:skeleton/e100.cpp
 e100
